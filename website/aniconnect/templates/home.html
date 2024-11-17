@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% if recommended_animes %}
+<!-- Display recommended anime cards -->
+<h2>Recommended Anime</h2>
+<div class="cards d-flex flex-row flex-wrap">
+  {% for recommended_anime in recommended_animes %}
+  <div class="card no-shadow rounded" style="background-color: #121212;width: 9rem;margin: 10px;transition: all 0.3s;">
+    <img class="card-img-top img-fluid rounded" src="{{recommended_anime.anime.image_url }}" alt="Card image cap">
+    <div class="card-body">
+      <p style="margin: 0; overflow: hidden;font-size: 20px; text-overflow: ellipsis; white-space: nowrap;">
+        <a href="{% url 'anime_page' recommended_anime.anime.anime_id %}" style="margin-right: 2px;" class="badge text-decoration-none ">
+          {{recommended_anime.anime.name}}
+        </a>
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<form method="post" action="{% url 'receive_ratings'%}">
+  <button  class="btn btn-primary" type="submit">submit
+  </button>
+</form>
+<br><br>
+ 
+
+{% else %}
+<!-- Display message to rate and review anime -->
+<p>Please rate and review anime to get recommendations.</p>
+{% endif %}
+
+{% else %}
+  <div class="background"></div>
+  <div class="card container justify-content-center" style="margin-top:20px; padding:10px; background-color: #1c1c1c; color: #fff;">
+    <h2>Login</h2>
+    <form method="POST" action="{% url 'home'%}">
+      {% csrf_token %}
+      <div class="user-box">
+        <label>Username</label><br>
+        <input required="" name="username" type="text" required>
+       
+      </div>
+      <div class="user-box">
+        <label>Password</label><br>
+        <input name="password" type="password" required>
+      </div><br>
+      <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register'%}" class="btn btn-danger">Sign up!</a></p>
+  </div>
+{% endif %}
+{% endblock %}
