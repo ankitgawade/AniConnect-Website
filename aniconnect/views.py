@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import SignUpForm,ReviewForm,PostForm,CommentForm,ReplyForm,AnimeStatusForm,ReviewReportForm,PostReportForm,CommentReportForm,ReplyReportForm,UserProfileForm
-from .models import AniconnectAniDesc,Review,Category,Post,Comment,Reply,AnimeStatus,ReviewReport,PostReport,CommentReport,ReplyReport,RecommendedAnime,UserProfile
+from .models import AniconnectAniDesc,Review,Category,Post,Comment,Reply,AnimeStatus,ReviewReport,PostReport,CommentReport,ReplyReport,UserProfile
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 import requests
