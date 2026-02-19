@@ -6,8 +6,6 @@ from django.urls import reverse
 # Create your tests here.
 
 class DatabaseConnectionTest(SimpleTestCase):
-    """Sanity check that the configured default DB accepts connections."""
-
     databases = {"default"}
 
     def test_default_database_connection(self):
